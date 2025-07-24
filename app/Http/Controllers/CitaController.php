@@ -50,7 +50,7 @@ class CitaController extends Controller
         $citas = $query->get();
 
         return $citas->map(function ($cita) {
-            $hora = substr($cita->hora, 0, 5); // formato HH:mm
+            $hora = substr($cita->hora, 0, 5);
             $paciente = $cita->paciente?->nombre ?? 'Sin paciente';
             $asignado = $cita->medico
                 ? 'Dr. ' . ($cita->medico->user->name ?? 'Sin nombre')
@@ -58,7 +58,7 @@ class CitaController extends Controller
 
             return [
                 'id' => $cita->id,
-                'title' => "$hora - $paciente ($asignado)",
+                'title' => "$paciente ($asignado)",
                 'start' => $cita->fecha . 'T' . $cita->hora,
                 'end' => $cita->fecha . 'T' . $cita->hora,
                 'extendedProps' => [
@@ -70,8 +70,6 @@ class CitaController extends Controller
             ];
         });
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -137,6 +135,33 @@ class CitaController extends Controller
 
         return response()->json(['message' => 'Cita actualizada.']);
     }
+
+    /**
+     * Update the specified date.
+     */
+    public function actualizarFecha(Request $request, $id)
+    {
+        $request->validate([
+            'fecha' => 'required|date',
+            'hora' => 'required|date_format:H:i:s',
+        ]);
+
+        $cita = Cita::find($id);
+
+        if (!$cita) {
+            return response()->json(['message' => 'Cita no encontrada.'], 404);
+        }
+
+        $cita->fecha = $request->input('fecha');
+        $cita->hora = $request->input('hora');
+        $cita->save();
+
+        return response()->json([
+            'message' => 'Cita actualizada correctamente.',
+            'cita' => $cita
+        ]);
+    }
+
 
     /**
      * Remove the specified resource from storage.

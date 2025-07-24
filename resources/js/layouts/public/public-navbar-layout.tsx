@@ -133,7 +133,12 @@ export default function MainLayout({ children }: Props) {
                             rel="noopener noreferrer"
                             className="hover:text-blue-600 transition"
                         >
-                            <Grid className="w-5 h-5" />
+                            <img
+                                src="/icons/instagram.png"
+                                alt="Instagram"
+                                className="w-5 h-5 object-contain"
+                                loading="lazy"
+                            />
                         </a>
                         <a
                             href="https://facebook.com/"
@@ -141,15 +146,25 @@ export default function MainLayout({ children }: Props) {
                             rel="noopener noreferrer"
                             className="hover:text-blue-600 transition"
                         >
-                            <Grid className="w-5 h-5" />
+                            <img
+                                src="/icons/facebook.png"
+                                alt="Facebook"
+                                className="w-5 h-5 object-contain"
+                                loading="lazy"
+                            />
                         </a>
                         <a
-                            href="https://www.tiktok.com/"
+                            href="https://wa.me/3114000218"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="hover:text-blue-600 transition"
                         >
-                            <Grid className="w-5 h-5 transform rotate-90" />
+                            <img
+                                src="/icons/whatsapp_.png"
+                                alt="Whatsapp"
+                                className="w-5 h-5 object-contain"
+                                loading="lazy"
+                            />
                         </a>
                     </div>
 

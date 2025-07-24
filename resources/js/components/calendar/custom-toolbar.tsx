@@ -150,11 +150,11 @@ export default function CustomToolbar({
             </span>
           </div>
           <div className="flex items-center gap-2 text-sm text-gray-600">
-            <Button variant="outline" size="icon" onClick={onPrev}>
+            <Button className='cursor-pointer' variant="outline" size="icon" onClick={onPrev}>
               <ChevronLeft className="w-4 h-4" />
             </Button>
             <span>{formatRange(visibleStart, visibleEnd)}</span>
-            <Button variant="outline" size="icon" onClick={onNext}>
+            <Button className='cursor-pointer' variant="outline" size="icon" onClick={onNext}>
               <ChevronRight className="w-4 h-4" />
             </Button>
           </div>
@@ -203,7 +203,7 @@ export default function CustomToolbar({
 
         {/* Vistas del calendario */}
         <div className="inline-flex rounded-md border overflow-hidden">
-          <Button
+          {/* <Button
             variant="ghost"
             size="icon"
             title='Vista de semana en lista'
@@ -211,12 +211,12 @@ export default function CustomToolbar({
             onClick={() => onChangeView('listWeek')}
           >
             <LayoutList className="w-4 h-4" />
-          </Button>
+          </Button> */}
           <Button
             variant="ghost"
             size="icon"
             title='Vista semanal con horario'
-            className={`rounded-none cursor-pointer ${activeView === 'timeGridWeek' ? 'bg-neutral-900 text-white' : ''}`}
+            className={`rounded-none cursor-pointer ${activeView === 'timeGridWeek' ? 'bg-primary text-white' : ''}`}
             onClick={() => onChangeView('timeGridWeek')}
           >
             <Columns2 className="w-4 h-4" />
@@ -225,7 +225,7 @@ export default function CustomToolbar({
             variant="ghost"
             size="icon"
             title='Vista mensual'
-            className={`rounded-none cursor-pointer ${activeView === 'dayGridMonth' ? 'bg-neutral-900 text-white' : ''}`}
+            className={`rounded-none cursor-pointer ${activeView === 'dayGridMonth' ? 'bg-primary text-white' : ''}`}
             onClick={() => onChangeView('dayGridMonth')}
           >
             <Grid2X2 className="w-4 h-4" />
@@ -234,7 +234,7 @@ export default function CustomToolbar({
             variant="ghost"
             size="icon"
             title='Vista multi mensual'
-            className={`rounded-none cursor-pointer ${activeView === 'multiMonthYear' ? 'bg-neutral-900 text-white' : ''}`}
+            className={`rounded-none cursor-pointer ${activeView === 'multiMonthYear' ? 'bg-primary text-white' : ''}`}
             onClick={() => onChangeView('multiMonthYear')}
           >
             <Grid3X3 className="w-4 h-4" />
@@ -315,7 +315,7 @@ export default function CustomToolbar({
 
       {/* DERECHA */}
       <div className="flex items-center gap-2 min-w-max">
-        <Button className="bg-neutral-900 text-white">
+        <Button className="bg-primary text-white">
           <Plus className="w-4 h-4 mr-1" /> Add Event
         </Button>
         <Button variant="outline" size="icon"><Settings className="w-4 h-4" /></Button>

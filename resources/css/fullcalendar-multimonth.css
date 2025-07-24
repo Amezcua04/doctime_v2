@@ -1,0 +1,24 @@
+/* Estilos personalizados para vista multi-mes */
+.fc.fc-multimonth-custom {
+  font-size: 0.75rem;
+  --fc-border-color: #d1d5db;
+  --fc-event-bg-color: #4ade80;
+}
+.fc-multimonth-custom .fc-multimonth-day {
+  min-height: 6rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+.fc-multimonth-custom .fc-multimonth-day:hover {
+  background-color: #f3f4f6;
+}
+.fc-multimonth-custom .fc-daygrid-event {
+  font-size: 0.7rem;
+  padding: 0.1rem 0.2rem;
+  border-radius: 0.25rem;
+}
+.fc .fc-cell-shaded,
+.fc .fc-day-disabled {
+  background: #fff;
+}

@@ -39,7 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         //Citas
         Route::get('/citas', [CitaController::class, 'index'])->name('citas.index');
         Route::post('/citas/fetch', [CitaController::class, 'fetch'])->name('citas.fetch');
-
+        Route::put('/citas/{id}/actualizar-fecha', [CitaController::class, 'actualizarFecha'])->name('citas.actualizar-fecha');
     });
 });
 

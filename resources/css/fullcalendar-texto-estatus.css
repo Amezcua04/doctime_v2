@@ -1,0 +1,12 @@
+/* Colores del texto por estatus */
+.fc-event-time.txt-pendiente { color: #d97706; }
+.fc-event-time.txt-confirmada { color: #2563eb; }
+.fc-event-time.txt-en_curso { color: #7c3aed; }
+.fc-event-time.txt-completada { color: #059669; }
+.fc-event-time.txt-cancelada { color: #991b1b; }
+
+.fc-event-title.txt-pendiente { color: #d97706; }
+.fc-event-title.txt-confirmada { color: #2563eb; }
+.fc-event-title.txt-en_curso { color: #7c3aed; }
+.fc-event-title.txt-completada { color: #059669; }
+.fc-event-title.txt-cancelada { color: #991b1b; }

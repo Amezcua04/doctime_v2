@@ -1,98 +1,135 @@
 import MainLayout from '@/layouts/public/public-navbar-layout';
 import PageHead from '@/components/public/public-page-head';
+import { Separator } from '@/components/ui/separator';
+import { Card, CardContent, CardDescription, CardTitle } from '@/components/ui/card';
+import { Badge } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { motion } from 'framer-motion';
+import { Link } from '@inertiajs/react';
 
 export default function Landing() {
   return (
     <MainLayout>
       <PageHead title="DocTime - Tu plataforma de gestión médica" />
 
-      {/* Hero Section */}
-      <section className="mx-auto max-w-7xl px-6 py-24 text-center md:text-left">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h1 className="mb-6 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-primary leading-tight">
-              Gestión médica moderna y eficiente
-            </h1>
-            <p className="mb-4 text-lg md:text-xl text-muted-foreground">
-              Reserva, administra y consulta citas médicas e historiales clínicos en una sola plataforma segura y fácil de usar.
-            </p>
-            <p className="mb-8 text-lg md:text-xl text-muted-foreground">
-              Ideal para clínicas, consultorios y hospitales que buscan optimizar sus procesos y brindar mejor atención.
+      {/* Main Content */}
+      <main className="w-full grow bg-gradient-to-b from-white to-blue-50 px-6 py-12 text-gray-900 dark:text-white">
+        {/* Hero Section */}
+        <motion.h1
+          className="text-4xl sm:text-6xl font-bold text-blue-800 dark:text-blue-300 text-center"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          Bienvenido a DocTime
+        </motion.h1>
+
+        <section className="max-w-screen-xl mx-auto flex flex-col-reverse md:flex-row items-center gap-8 px-4 py-12">
+          {/* Text Section */}
+          <div className="w-full md:w-1/2 space-y-6 text-justify">
+            <h2 className="text-2xl sm:text-3xl font-bold text-blue-700 text-center md:text-left">
+              Salud de calidad al alcance de tu mano, todo el año.
+            </h2>
+            <p className="text-gray-700">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui similique dolorum voluptates laudantium, tenetur, a officia temporibus iusto, odit earum omnis architecto magni harum laboriosam suscipit placeat non assumenda animi?
             </p>
 
-            <div className="flex flex-col items-center gap-4 md:flex-row md:items-start">
-              <a
-                href="#"
-                className="rounded-full bg-primary px-8 py-3 text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
-              >
-                Empezar ahora
-              </a>
-              <a
-                href="#features"
-                className="rounded-full border border-border px-8 py-3 text-sm font-medium text-muted-foreground hover:bg-muted transition-colors"
-              >
-                Ver características
-              </a>
-            </div>
+            {/* <h3 className="text-xl sm:text-2xl font-semibold text-blue-700 text-center md:text-left">
+              ¡Atención médica y servicios todo el año para ti y tu familia!
+            </h3>
+            <p className="text-gray-700">
+              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eaque tempora possimus doloremque blanditiis, ipsa explicabo accusantium error enim repellendus ea voluptates velit sed dicta! Nemo numquam placeat illo exercitationem laboriosam!
+            </p> */}
           </div>
 
-          <div className="hidden md:block animate-fade-in">
+          {/* Image Section */}
+          <div className="w-full md:w-1/2 relative flex justify-center">
+            <div className="absolute inset-0 rounded-bl-[80px] bg-green-400 opacity-20 z-0" />
             <img
-              src="/img/landing-hero.svg"
-              alt="Ilustración DocTime"
-              className="w-full h-auto max-h-[400px] object-contain"
+              src="/path/to/your/family-image.png"
+              alt="Imagen familia"
+              className="relative z-10 max-w-full h-auto object-cover"
             />
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Features Section */}
-      <section id="features" className="bg-muted/50 dark:bg-muted px-6 py-20">
-        <div className="mx-auto max-w-6xl">
-          <h2 className="text-3xl font-bold text-center text-primary mb-12">
-            Funciones clave de DocTime
+        <Separator className="my-12" />
+
+        {/* Médicos */}
+        <section className="max-w-6xl mx-auto mb-16">
+          <h2 className="text-3xl font-semibold text-center text-blue-800 dark:text-blue-300 mb-8">
+            Catálogo de Médicos Especialistas
           </h2>
-          <div className="grid gap-12 md:grid-cols-3 text-center">
-            <div className="px-4">
-              <div className="text-4xl mb-3">📅</div>
-              <h3 className="text-xl font-semibold text-primary">Reservas inteligentes</h3>
-              <p className="mt-2 text-muted-foreground">
-                Permite a los pacientes agendar sus citas de forma rápida desde cualquier dispositivo.
-              </p>
-            </div>
-            <div className="px-4">
-              <div className="text-4xl mb-3">🔒</div>
-              <h3 className="text-xl font-semibold text-primary">Historial clínico seguro</h3>
-              <p className="mt-2 text-muted-foreground">
-                Consulta expedientes médicos protegidos y actualizados en tiempo real.
-              </p>
-            </div>
-            <div className="px-4">
-              <div className="text-4xl mb-3">🔔</div>
-              <h3 className="text-xl font-semibold text-primary">Notificaciones automáticas</h3>
-              <p className="mt-2 text-muted-foreground">
-                Recordatorios inteligentes que mejoran la asistencia y reducen cancelaciones.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* CTA Final */}
-      <section className="mx-auto max-w-6xl px-6 py-24 text-center">
-        <h2 className="mb-6 text-3xl md:text-4xl font-bold text-primary">
-          ¿Listo para transformar tu centro médico con DocTime?
-        </h2>
-        <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
-          Únete a cientos de profesionales que ya gestionan sus citas con eficiencia y confianza.
-        </p>
-        <a
-          href="#"
-          className="inline-block rounded-full bg-primary px-10 py-4 text-sm font-semibold text-white hover:bg-primary/90 transition-colors"
-        >
-          Crear cuenta gratis
-        </a>
-      </section>
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: "Dra. Ana Pérez", specialty: "Cardióloga" },
+              { name: "Dr. Luis Gómez", specialty: "Pediatra" },
+              { name: "Dra. María Ruiz", specialty: "Ginecóloga" },
+            ].map((medico, i) => (
+              <Card key={i} className="hover:shadow-md transition-shadow">
+                <CardContent className="space-y-2 p-6">
+                  <CardTitle>{medico.name}</CardTitle>
+                  <CardDescription>{medico.specialty}</CardDescription>
+                  <Badge className="w-fit bg-green-100 text-green-700">Disponible</Badge>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <Link href={route('home')}>
+              <Button className=" cursor-pointer bg-blue-600 text-white hover:bg-blue-700">
+                Ver todo el catálogo
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* Servicios */}
+        <section className="max-w-6xl mx-auto mb-24">
+          <h2 className="text-3xl font-semibold text-center text-blue-800 dark:text-blue-300 mb-8">
+            Servicios Médicos Disponibles
+          </h2>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { name: "Laboratorio Clínico", description: "Análisis y estudios completos." },
+              { name: "Rayos X", description: "Diagnóstico por imagen de alta precisión." },
+              { name: "Ultrasonido", description: "Ecografías con equipos de última tecnología." },
+            ].map((servicio, i) => (
+              <Card key={i} className="hover:shadow-md transition-shadow">
+                <CardContent className="space-y-2 p-6">
+                  <CardTitle>{servicio.name}</CardTitle>
+                  <CardDescription>{servicio.description}</CardDescription>
+                  <Badge className="w-fit bg-yellow-100 text-yellow-700">Incluido</Badge>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <Link href={route('home')}>
+              <Button className=" cursor-pointer bg-blue-600 text-white hover:bg-blue-700">
+                Ver todos los servicios
+              </Button>
+            </Link>
+          </div>
+        </section>
+
+        {/* CTA Final */}
+        <section className="text-center">
+          <h3 className="text-2xl font-medium mb-4">Únete a DocTime</h3>
+          <p className="text-gray-700 dark:text-gray-300 mb-6">
+            Atención médica y servicios todo el año para ti y tu familia.
+          </p>
+          <Link href={route('home')}>
+            <Button className=" cursor-pointer bg-blue-600 text-white hover:bg-blue-700">
+              Ver todos los servicios
+            </Button>
+          </Link>
+        </section>
+      </main>
     </MainLayout>
   );
 }
