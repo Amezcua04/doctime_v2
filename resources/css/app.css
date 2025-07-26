@@ -111,6 +111,7 @@
   .fc-timegrid-slot-lane,
   .fc-daygrid-day {
     @apply hover:bg-gray-50;
+    @apply cursor-pointer;
   }
 
   /* Hoy */

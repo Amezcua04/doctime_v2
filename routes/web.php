@@ -27,7 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Pacientes
         Route::resource('pacientes', PacienteController::class);
         Route::put('/pacientes/{paciente}/restore', [PacienteController::class, 'restore'])->name('pacientes.restore');
-
+        Route::get('/pacientes/buscar', [CitaController::class, 'buscarPacientePorCurp'])->name('pacientes.buscar');
         // Medicos
         Route::resource('medicos', MedicoController::class);
         Route::put('/medicos/{medico}/restore', [MedicoController::class, 'restore'])->name('medicos.restore');
@@ -37,9 +37,15 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::put('/servicios/{servicio}/restore', [ServicioController::class, 'restore'])->name('servicios.restore');
 
         //Citas
-        Route::get('/citas', [CitaController::class, 'index'])->name('citas.index');
+        // Route::get('/citas', [CitaController::class, 'index'])->name('citas.index');
+        // Route::post('/citas', [CitaController::class, 'store']);
+        // Route::put('/citas/{cita}', [CitaController::class, 'update'])->name('citas.update');
+        // Route::post('/citas/fetch', [CitaController::class, 'fetch'])->name('citas.fetch');
+        // Route::put('/citas/{id}/actualizar-fecha', [CitaController::class, 'actualizarFecha'])->name('citas.actualizar-fecha');
+        Route::resource('citas', CitaController::class)->only(['index', 'store', 'update']);
         Route::post('/citas/fetch', [CitaController::class, 'fetch'])->name('citas.fetch');
         Route::put('/citas/{id}/actualizar-fecha', [CitaController::class, 'actualizarFecha'])->name('citas.actualizar-fecha');
+
     });
 });
 

@@ -23,7 +23,7 @@ export default function DeleteButton({ resourceName, deleteUrl, onSuccess }: Del
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant='outline' size='icon' className='cursor-pointer' title='Eliminar'>
+        <Button variant='outline' size='icon' className='cursor-pointer bg-red-500 hover:bg-red-600 text-white' title='Eliminar'>
           <TrashIcon className='w-4 h-4' />
         </Button>
       </AlertDialogTrigger>

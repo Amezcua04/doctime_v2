@@ -7,12 +7,14 @@ import {
 } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
+import interactionPlugin, { DateClickArg } from '@fullcalendar/interaction';
 import multiMonthPlugin from '@fullcalendar/multimonth';
 import axios from 'axios';
 import { toast } from 'sonner';
 import CustomToolbar from '@/components/calendar/custom-toolbar';
 import { BreadcrumbItem } from '@/types';
+import EventoModal from '@/components/calendar/event-modal';
+import CrearEventoModal from '@/components/calendar/create-event-modal';
 
 // 🧭 Breadcrumb
 const breadcrumbs: BreadcrumbItem[] = [
@@ -28,14 +30,20 @@ interface Servicio {
   id: number;
   nombre: string;
 }
+interface Paciente {
+  id: number;
+  nombre: string;
+}
 
 // 🧠 Componente Principal
 export default function CitasIndex({
   medicos,
   servicios,
+  pacientes,
 }: {
   medicos: Medico[];
   servicios: Servicio[];
+  pacientes: Paciente[];
 }) {
   // 📌 Refs y estados
   const calendarRef = useRef<FullCalendar | null>(null);
@@ -48,6 +56,14 @@ export default function CitasIndex({
   const [activeView, setActiveView] = useState('timeGridWeek');
   const [tipo, setTipo] = useState<'medico' | 'servicio' | 'todos'>('todos');
   const [tipoId, setTipoId] = useState<number | null>(null);
+  // modal para editar eventos
+  const [eventoSeleccionado, setEventoSeleccionado] = useState<any | null>(null);
+  const [mostrarModal, setMostrarModal] = useState(false);
+  // modal para crear eventos
+  const [crearModalAbierto, setCrearModalAbierto] = useState(false);
+  const [fechaSeleccionada, setFechaSeleccionada] = useState('');
+  const [horaSeleccionada, setHoraSeleccionada] = useState('');
+
 
   // 📅 Eventos visibles para contador
   const eventosVisibles = eventos.filter((evento) => {
@@ -143,6 +159,15 @@ export default function CitasIndex({
     }
   };
 
+  const handleDateClick = (info: DateClickArg) => {
+    const [fechaStr, horaStr] = info.dateStr.split('T');
+    const hora = horaStr ? horaStr.substring(0, 5) : '09:00';
+
+    setFechaSeleccionada(fechaStr);
+    setHoraSeleccionada(hora);
+    setCrearModalAbierto(true);
+  };
+
 
   // 📦 Plugins de calendario
   const plugins = [dayGridPlugin, timeGridPlugin, interactionPlugin, multiMonthPlugin];
@@ -150,7 +175,6 @@ export default function CitasIndex({
   return (
     <AppLayout breadcrumbs={breadcrumbs}>
       <Head title="Agenda de Citas" />
-
       <div className="flex flex-col gap-4 p-4">
         <CustomToolbar
           onPrev={() => calendarRef.current?.getApi().prev()}
@@ -168,6 +192,7 @@ export default function CitasIndex({
           selectedTipo={tipo}
           selectedId={tipoId}
           onChangeTipo={handleChangeTipo}
+          onCrearEvento={() => setCrearModalAbierto(true)}
         />
 
         <FullCalendar
@@ -182,8 +207,11 @@ export default function CitasIndex({
           eventDidMount={handleEventRender}
           height="auto"
           locale="es"
-          eventClick={(info) => toast(`Cita: ${info.event.title}`)}
-          dateClick={(info) => toast(`Día seleccionado: ${info.dateStr}`)}
+          eventClick={(info) => {
+            setEventoSeleccionado(info.event);
+            setMostrarModal(true);
+          }}
+          dateClick={handleDateClick}
           datesSet={handleDatesSet}
           fixedWeekCount
           showNonCurrentDates={false}
@@ -194,6 +222,27 @@ export default function CitasIndex({
           allDaySlot={false}
         />
       </div>
+
+      <EventoModal
+        open={mostrarModal}
+        onClose={() => setMostrarModal(false)}
+        evento={eventoSeleccionado}
+        calendarRef={calendarRef}
+      />
+
+      <CrearEventoModal
+        open={crearModalAbierto}
+        onClose={() => setCrearModalAbierto(false)}
+        calendarRef={calendarRef}
+        fechaSeleccionada={fechaSeleccionada}
+        horaSeleccionada={horaSeleccionada}
+        medicos={medicos}
+        servicios={servicios}
+        pacientes={pacientes}
+      />
+
+
+
     </AppLayout>
   );
 }

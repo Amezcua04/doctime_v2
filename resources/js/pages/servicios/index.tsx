@@ -18,6 +18,7 @@ import RestoreButton from '@/components/restore-button';
 import Pagination from '@/components/pagination';
 import { Input } from '@/components/ui/input';
 import type { BreadcrumbItem } from '@/types';
+import EditButton from '@/components/edit-button';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -167,11 +168,7 @@ export default function Servicios({
                                                         <div className="flex justify-end gap-2 flex-wrap">
                                                             {activo ? (
                                                                 <div className="flex gap-2 justify-end flex-wrap">
-                                                                    <Link href={`/servicios/${servicio.id}/edit`}>
-                                                                        <Button variant='outline' size='icon' className='cursor-pointer' title="Editar">
-                                                                            <EditIcon className="w-4 h-4" />
-                                                                        </Button>
-                                                                    </Link>
+                                                                    <EditButton href={`/servicios/${servicio.id}/edit`} />
                                                                     <DeleteButton resourceName="servicio" deleteUrl={`/servicios/${servicio.id}`} />
                                                                 </div>
                                                             ) : (

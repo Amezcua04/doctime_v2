@@ -18,6 +18,7 @@ import DeleteButton from '@/components/delete-button';
 import Pagination from '@/components/pagination';
 import { Input } from '@/components/ui/input';
 import RestoreButton from '@/components/restore-button';
+import EditButton from '@/components/edit-button';
 
 const breadcrumbs: BreadcrumbItem[] = [
   {
@@ -173,11 +174,7 @@ export default function Pacientes({ pacientes, filters }: { pacientes: Pacientes
                           <TableCell className="text-right">
                             {activo ? (
                               <div className="flex gap-2 justify-end flex-wrap">
-                                <Link href={`/pacientes/${paciente.id}/edit`}>
-                                  <Button variant='outline' size='icon' className='cursor-pointer' title="Editar">
-                                    <EditIcon className='w-4 h-4' />
-                                  </Button>
-                                </Link>
+                                <EditButton href={`/pacientes/${paciente.id}/edit`} />
                                 <DeleteButton resourceName="paciente" deleteUrl={`/pacientes/${paciente.id}`} />
                               </div>
                             ) : (

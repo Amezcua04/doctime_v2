@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cita;
 use App\Models\Medico;
+use App\Models\Paciente;
 use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -17,10 +18,12 @@ class CitaController extends Controller
     {
         $medicos = Medico::with('user:id,name')->get();
         $servicios = Servicio::all();
+        $pacientes = Paciente::all();
 
         return Inertia::render('citas/index', [
             'medicos' => $medicos,
             'servicios' => $servicios,
+            'pacientes' => $pacientes,
         ]);
     }
 

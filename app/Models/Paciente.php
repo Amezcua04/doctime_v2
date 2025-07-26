@@ -20,4 +20,8 @@ class Paciente extends Model
         'email'
     ];
 
+    public function cita()
+    {
+        return $this->hasMany(Cita::class);
+    }
 }

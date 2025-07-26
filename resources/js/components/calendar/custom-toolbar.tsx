@@ -42,6 +42,7 @@ interface Props {
   selectedTipo?: 'todos' | 'medico' | 'servicio';
   selectedId?: number | null;
   onChangeTipo?: (tipo: 'todos' | 'medico' | 'servicio', id: number | null) => void;
+  onCrearEvento?: () => void;
 }
 
 const ESTATUS_OPCIONES = [
@@ -68,6 +69,7 @@ export default function CustomToolbar({
   selectedTipo = 'todos',
   selectedId = null,
   onChangeTipo = () => { },
+  onCrearEvento = () => { },
 }: Props) {
   const badgeRef = useRef<HTMLSpanElement | null>(null);
 
@@ -315,10 +317,9 @@ export default function CustomToolbar({
 
       {/* DERECHA */}
       <div className="flex items-center gap-2 min-w-max">
-        <Button className="bg-primary text-white">
-          <Plus className="w-4 h-4 mr-1" /> Add Event
+        <Button className="cursor-pointer bg-primary text-white" onClick={onCrearEvento}>
+          <Plus className="w-4 h-4 mr-1" /> Crear cita
         </Button>
-        <Button variant="outline" size="icon"><Settings className="w-4 h-4" /></Button>
       </div>
     </div>
   );
