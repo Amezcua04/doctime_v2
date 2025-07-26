@@ -105,7 +105,7 @@ export default function CreatePaciente() {
                                 <Link href="/pacientes">
                                     <Button className='cursor-pointer' type="button" variant="outline">Cancelar</Button>
                                 </Link>
-                                <Button className='cursor-pointer' type="submit" disabled={processing}>Guardar cambios</Button>
+                                <Button className='cursor-pointer' type="submit" disabled={processing}>Guardar</Button>
                             </div>
                         </form>
                     </CardContent>

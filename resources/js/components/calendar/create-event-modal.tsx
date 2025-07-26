@@ -113,7 +113,7 @@ export default function CrearEventoModal({
             }
 
             toast.success('Cita creada exitosamente');
-            onClose();
+            handleClose();
         } catch (error) {
             toast.error('Error al crear la cita');
         }

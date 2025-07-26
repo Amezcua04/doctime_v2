@@ -84,7 +84,7 @@ export default function CreateServicio() {
                 <Link href="/servicios">
                   <Button className='cursor-pointer' type="button" variant="outline">Cancelar</Button>
                 </Link>
-                <Button className='cursor-pointer' type="submit" disabled={processing}>Guardar cambios</Button>
+                <Button className='cursor-pointer' type="submit" disabled={processing}>Guardar</Button>
               </div>
             </form>
           </CardContent>
