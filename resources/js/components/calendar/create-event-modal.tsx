@@ -146,12 +146,12 @@ export default function CrearEventoModal({
                             setTipoAsignado(val as 'medico' | 'servicio');
                             setAsignadoId(null);
                         }}>
-                            <SelectTrigger>
+                            <SelectTrigger className="cursor-pointer hover:bg-muted/70 transition">
                                 <SelectValue placeholder="Selecciona tipo" />
                             </SelectTrigger>
                             <SelectContent>
-                                <SelectItem value="medico">Médico</SelectItem>
-                                <SelectItem value="servicio">Servicio</SelectItem>
+                                <SelectItem className='cursor-pointer' value="medico">Médico</SelectItem>
+                                <SelectItem className='cursor-pointer' value="servicio">Servicio</SelectItem>
                             </SelectContent>
                         </Select>
                     </div>
@@ -160,12 +160,12 @@ export default function CrearEventoModal({
                         <div>
                             <Label>{tipoAsignado === 'medico' ? 'Selecciona médico' : 'Selecciona servicio'} <span className='text-red-600'>*</span></Label>
                             <Select value={asignadoId?.toString() || ''} onValueChange={(val) => setAsignadoId(Number(val))}>
-                                <SelectTrigger>
+                                <SelectTrigger className="cursor-pointer hover:bg-muted/70 transition">
                                     <SelectValue placeholder="Selecciona uno" />
                                 </SelectTrigger>
                                 <SelectContent>
                                     {(tipoAsignado === 'medico' ? medicos : servicios).map(item => (
-                                        <SelectItem key={item.id} value={item.id.toString()}>
+                                        <SelectItem className='cursor-pointer' key={item.id} value={item.id.toString()}>
                                             {tipoAsignado === 'medico' ? item.user.name : item.nombre}
                                         </SelectItem>
                                     ))}
@@ -188,12 +188,12 @@ export default function CrearEventoModal({
                     <div>
                         <Label>Estatus</Label>
                         <Select value={estatus} onValueChange={setEstatus}>
-                            <SelectTrigger>
+                            <SelectTrigger className="cursor-pointer hover:bg-muted/70 transition">
                                 <SelectValue placeholder="Selecciona estatus" />
                             </SelectTrigger>
                             <SelectContent>
                                 {estatusOptions.map(e => (
-                                    <SelectItem key={e.value} value={e.value}>
+                                    <SelectItem className='cursor-pointer' key={e.value} value={e.value}>
                                         {e.label}
                                     </SelectItem>
                                 ))}
@@ -203,7 +203,7 @@ export default function CrearEventoModal({
 
                     <div>
                         <Label>Notas</Label>
-                        <Textarea value={notas} onChange={(e) => setNotas(e.target.value)} />
+                        <Textarea className="cursor-text hover:bg-muted/70 transition" value={notas} onChange={(e) => setNotas(e.target.value)} />
                     </div>
                 </div>
 

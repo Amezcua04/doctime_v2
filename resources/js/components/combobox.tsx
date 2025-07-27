@@ -43,7 +43,7 @@ export default function ComboboxPaciente({
   return (
     <div className="space-y-1">
       <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
+        <PopoverTrigger asChild className="cursor-pointer">
           <Button
             variant="outline"
             role="combobox"
