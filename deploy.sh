@@ -6,7 +6,7 @@ echo "Desplegando aplicación Laravel..."
 git pull origin main
 
 # Instala dependencias
-composer install --no-dev --optimize-autoloader
+composer2 install --no-dev --optimize-autoloader
 
 # Ejecuta migraciones si aplica
 php artisan migrate --force
