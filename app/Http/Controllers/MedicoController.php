@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
 use Inertia\Inertia;
 
 class MedicoController extends Controller
@@ -56,9 +57,18 @@ class MedicoController extends Controller
             'avatar' => 'nullable|image|max:2048',
         ]);
 
-        $avatarPath = $request->hasFile('avatar')
-            ? $request->file('avatar')->store('avatars', 'public')
-            : null;
+        $avatarPath = null;
+
+        if ($request->hasFile('avatar')) {
+            $filename = time() . '_' . $request->file('avatar')->getClientOriginalName();
+            $avatarPath = $request->file('avatar')->storeAs('avatars', $filename, 'public');
+
+            // Copiar al public/storage
+            $source = storage_path('app/public/' . $avatarPath);
+            $destination = public_path('storage/' . $avatarPath);
+            File::ensureDirectoryExists(dirname($destination));
+            File::copy($source, $destination);
+        }
 
         $user = User::create([
             'name' => $validated['name'],
@@ -100,9 +110,18 @@ class MedicoController extends Controller
             'avatar' => 'nullable|image|max:2048',
         ]);
 
-        $avatarPath = $request->hasFile('avatar')
-            ? $request->file('avatar')->store('avatars', 'public')
-            : $medico->avatar;
+        $avatarPath = $medico->avatar;
+
+        if ($request->hasFile('avatar')) {
+            $filename = time() . '_' . $request->file('avatar')->getClientOriginalName();
+            $avatarPath = $request->file('avatar')->storeAs('avatars', $filename, 'public');
+
+            // Copiar al public/storage
+            $source = storage_path('app/public/' . $avatarPath);
+            $destination = public_path('storage/' . $avatarPath);
+            File::ensureDirectoryExists(dirname($destination));
+            File::copy($source, $destination);
+        }
 
         // Actualizar datos del usuario solo si hay cambios
         $userData = [];
