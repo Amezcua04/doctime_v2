@@ -23,12 +23,13 @@ export default function CreateMedico() {
         dgp_especialidad: '',
         subespecialidad: '',
         dgp_subespecialidad: '',
-        avatar: '',
+        avatar: null as File | null
     });
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         post('/medicos', {
+            forceFormData: true,
             onSuccess: () => {
                 toast.success('Médico creado con éxito');
             },
@@ -80,8 +81,14 @@ export default function CreateMedico() {
                                 </div>
 
                                 <div>
-                                    <Label htmlFor="avatar">URL de Avatar (opcional)</Label>
-                                    <Input id="avatar" value={data.avatar} onChange={(e) => setData('avatar', e.target.value)} />
+                                    <Label htmlFor="avatar">Avatar (opcional)</Label>
+                                    <Input
+                                        id="avatar"
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => setData('avatar', e.target.files?.[0] ?? null)}
+                                    />
+
                                     {errors.avatar && <p className="text-sm text-red-500">{errors.avatar}</p>}
                                 </div>
 

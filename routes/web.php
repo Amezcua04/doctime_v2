@@ -3,6 +3,7 @@
 use App\Http\Controllers\CitaController;
 use App\Http\Controllers\MedicoController;
 use App\Http\Controllers\PacienteController;
+use App\Http\Controllers\PublicController;
 use App\Http\Controllers\ServicioController;
 use App\Http\Middleware\RoleMiddleware;
 use Illuminate\Support\Facades\Route;
@@ -10,12 +11,10 @@ use Inertia\Inertia;
 
 
 // Rutas publicas
-Route::get('/', function () {
-    return Inertia::render('welcome');
-})->name('home');
-Route::get('/nosotros', function () {
-    return Inertia::render('about');
-})->name('us');
+Route::get('/', [PublicController::class, 'home'])->name('home');
+Route::get('/about', [PublicController::class, 'about'])->name('public.about');
+Route::get('/directorio', [PublicController::class, 'directorio'])->name('public.directorio');
+Route::get('/catalogo', [PublicController::class, 'catalogo'])->name('public.catalogo');
 
 // Rutas administradas
 Route::middleware(['auth', 'verified'])->group(function () {

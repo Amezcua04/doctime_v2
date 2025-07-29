@@ -78,7 +78,7 @@ export default function Landing() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <Link href={route('home')}>
+            <Link href={route('public.directorio')}>
               <Button className=" cursor-pointer bg-blue-600 text-white hover:bg-blue-700">
                 Ver todo el catálogo
               </Button>
@@ -109,7 +109,7 @@ export default function Landing() {
           </div>
 
           <div className="mt-8 flex justify-center">
-            <Link href={route('home')}>
+            <Link href={route('public.catalogo')}>
               <Button className=" cursor-pointer bg-blue-600 text-white hover:bg-blue-700">
                 Ver todos los servicios
               </Button>
