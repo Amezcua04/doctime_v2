@@ -118,7 +118,7 @@ export default function EditMedico({ medico }: { medico: Medico }) {
 
                 <div>
                   <Label htmlFor="avatar">Avatar</Label>
-                  <Input id="avatar" type="file" accept="image/*" onChange={(e) => setData('avatar', e.target.files?.[0] || null)} />
+                  <Input className='cursor-pointer' id="avatar" type="file" accept="image/*" onChange={(e) => setData('avatar', e.target.files?.[0] || null)} />
                   {errors.avatar && <p className="text-sm text-red-500">{errors.avatar}</p>}
                 </div>
 
@@ -149,9 +149,9 @@ export default function EditMedico({ medico }: { medico: Medico }) {
 
               <div className="flex justify-end gap-2">
                 <Link href="/medicos">
-                  <Button type="button" variant="outline">Cancelar</Button>
+                  <Button className='cursor-pointer' type="button" variant="outline">Cancelar</Button>
                 </Link>
-                <Button type="submit" disabled={processing}>Guardar cambios</Button>
+                <Button className='cursor-pointer' type="submit" disabled={processing}>Guardar cambios</Button>
               </div>
             </form>
           </CardContent>
